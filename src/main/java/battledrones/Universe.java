@@ -1,6 +1,7 @@
 package battledrones;
 
 import battledrones.devices.Body;
+import battledrones.devices.Drone;
 
 import java.util.List;
 
@@ -8,5 +9,7 @@ import java.util.List;
  * Created by evilwasp on 03/10/15.
  */
 public class Universe {
-    List<Body> bodies;
+    List<Drone> drones;
+
+
 }

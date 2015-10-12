@@ -1,5 +1,6 @@
 package battledrones.devices;
 
+import java.awt.*;
 import java.util.List;
 
 /**
@@ -7,4 +8,14 @@ import java.util.List;
  */
 public interface Drone {
     List<Device> getDevices();
+
+    double getOrientation();
+
+    Point getLocation();
+
+    double getSpeed();
+
+
+
+
 }

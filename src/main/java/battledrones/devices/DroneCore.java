@@ -1,8 +1,5 @@
 package battledrones.devices;
 
-import battledrones.MyMath.DecVector;
-import battledrones.MyMath.PolVector;
-
 import java.util.List;
 
 /**

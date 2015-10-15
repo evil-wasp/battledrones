@@ -1,4 +1,4 @@
-package battledrones.MyMath;
+package battledrones.math;
 
 /**
  * Created by evilwasp on 10/10/15.

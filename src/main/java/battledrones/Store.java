@@ -1,6 +1,7 @@
 package battledrones;
 
 import battledrones.devices.Device;
+import battledrones.devices.Drone;
 import battledrones.devices.Engine;
 
 import java.util.List;
@@ -18,4 +19,10 @@ public interface Store {
      * Returns list of all engines available.
      */
     List<Engine> showEngines();
+
+    public enum DroneType{
+        DefaultDrone;
+    }
+
+    public Drone getDrone();
 }

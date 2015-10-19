@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * Created by evilwasp on 17/10/15.
  */
-public class TestStore extends TestCase {
+public class TestStoree extends TestCase {
     @Test
     public void testStore() {
         Store store = TheStore.getInstance();

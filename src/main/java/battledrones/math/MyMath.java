@@ -7,7 +7,7 @@ import battledrones.Main;
  */
 public class MyMath {
     public static final String TABLE_SIZE_KEY = "trigonometry.tablesize";
-    public static final int TABLE_SIZE = Main.configuration.getInt(TABLE_SIZE_KEY, 10000);
+    public static final int TABLE_SIZE = Main.calcConf.getInt(TABLE_SIZE_KEY, 10000);
     private static double[] sinTable;
     private static double[] cosTable;
     private static double[] tanTable;

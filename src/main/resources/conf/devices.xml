@@ -1,0 +1,70 @@
+<device>
+
+    #DRONES
+
+    <DefaultDrone>
+        <name>Default Drone</name>
+        <price>100</price>
+        <mass>1000</mass>
+        <humanDescription>a simple drone put together from some tin cans\, it flies... so far</humanDescription>
+        <valueList>1,2,3,4,5,6,7,8,9</valueList>
+    </DefaultDrone>
+    <drone>
+        <name>Default Drone</name>
+        <price>100</price>
+        <mass>1000</mass>
+        <humanDescription>a simple drone put together from some tin cans\, it flies... so far</humanDescription>
+        <valueList>1,2,3,4,5,6,7,8,9</valueList>
+    </drone>
+
+    #ENGINES
+
+    <DefaultEngine>
+        <name>Default Engine</name>
+        <price>25</price>
+        <mass>300</mass>
+        <maxThrust>250</maxThrust>
+        <humanDescription>a simple engine</humanDescription>
+    </DefaultEngine>
+    <engine>
+        <name>Default Engine</name>
+        <price>25</price>
+        <mass>300</mass>
+        <maxThrust>250</maxThrust>
+        <humanDescription>a simple engine</humanDescription>
+    </engine>
+    <engine>
+        <name>TurboThrottler-150</name>
+        <price>40</price>
+        <mass>100</mass>
+        <maxThrust>150</maxThrust>
+        <humanDescription>Will shift you ahead...</humanDescription>
+    </engine>
+    <engine>
+        <name>TurboThrottler-250</name>
+        <price>60</price>
+        <mass>200</mass>
+        <maxThrust>250</maxThrust>
+        <humanDescription>Will boost you up...</humanDescription>
+    </engine>
+    <engine>
+        <name>TurboThrottler-500</name>
+        <price>90</price>
+        <mass>250</mass>
+        <maxThrust>500</maxThrust>
+        <humanDescription>Kinda explosive...</humanDescription>
+    </engine>
+
+    #WEAPONS
+
+    <weapon></weapon>
+    <weapon></weapon>
+    <weapon></weapon>
+
+    #RADARS
+
+    <radar></radar>
+    <radar></radar>
+    <radar></radar>
+
+</device>

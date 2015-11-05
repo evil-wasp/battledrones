@@ -20,9 +20,22 @@ public interface Store {
      */
     List<Engine> showEngines();
 
-    public enum DroneType{
+    /**
+     * Returns list of all drones available.
+     */
+    List<Drone> showDrones();
+
+    enum DroneType{
         DefaultDrone;
     }
 
-    public Drone getDrone();
+    enum EngineType{
+        DefaultEngine;
+    }
+
+    enum RadarType{
+        DefaulRadar;
+    }
+
+    Drone getDrone(String droneType);
 }

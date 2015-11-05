@@ -10,13 +10,13 @@ public interface Device {
      */
     String getName();
 
-    float getMass();
+    double getMass();
 
     int getPrice();
 
     /**
      * Returns human friendly description of device.<br>
-     * Ex: <i>This is so nice gadget. Looks posh. Keep it dry and safe. Made from recyclable materials.</i>
+     * Ex: <i>This is such a nice gadget. Looks posh. Keep it dry and safe. Made from recyclable materials.</i>
      */
     String getHumanDescription();
 

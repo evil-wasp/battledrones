@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * Created by evilwasp on 30/09/15.
  */
-public interface Drone {
+public interface Drone extends Device{
     List<Device> getDevices();
 
     double getOrientation();

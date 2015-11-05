@@ -13,15 +13,15 @@ public interface Engine extends Device {
      * Sets engine thrust level.
      * @param level any values &lt; 0 will set thrust to minimum value 0, any values &gt; 1 will set thrust to maximum value 1
      */
-    void setThrust(float level);
+    void setThrust(double level);
 
     /**
      * Returns engine thrust level.
      */
-    float getThrust();
+    double getThrust();
 
     /**
      * Return maximum power of engine.
      */
-    float getPower();
+    double getMaxThrust();
 }

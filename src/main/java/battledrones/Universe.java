@@ -1,6 +1,5 @@
 package battledrones;
 
-import battledrones.devices.Body;
 import battledrones.devices.Drone;
 
 import java.util.List;

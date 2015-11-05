@@ -1,0 +1,15 @@
+#DefaultDrone
+
+    drone.DefaultDrone.name = "DefaultDrone"
+    drone.DefaultDrone.price = 100
+    drone.DefaultDrone.mass = 1000
+
+    drone.DefaultDrone.humanDescription ="a simple drone put together from some tin cans, it flies... so far"
+
+#DefaultEngine
+
+     engine.DefaultEngine.name = "DefaultEngine"
+     engine.DefaultEngine.price = 100
+     engine.DefaultEngine.mass = 400
+
+     engine.DefaultEngine.humanDescription ="a simple drone put together from some tin cans, it flies... so far"

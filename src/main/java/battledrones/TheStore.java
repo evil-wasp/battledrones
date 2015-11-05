@@ -1,9 +1,6 @@
 package battledrones;
 
-import battledrones.devices.DefaultEngine;
-import battledrones.devices.Device;
-import battledrones.devices.Drone;
-import battledrones.devices.Engine;
+import battledrones.devices.*;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -16,29 +13,47 @@ public class TheStore implements Store {
     private static Store instance = new TheStore();
 
     private List<Engine> engines;
+    private List<Radar> radars;
+    private List<Drone> drones;
 
     public static Store getInstance() {
         return instance;
     }
 
     private TheStore() {
+        if (engines == null) {
+            this.engines = new ArrayList<>();
+            engines.add(DeviceFactory.getDefaultEngine());
+            this.engines = Collections.unmodifiableList(this.engines);
+        }
+
+        if (drones == null) {
+            this.drones = new ArrayList<>();
+            drones.add(DeviceFactory.getDefaultDrone());
+            this.drones = Collections.unmodifiableList(this.drones);
+        }
+
     }
 
     public List<Device> showDevices() {
-        return null;
+        List<Device> devices = new ArrayList<Device>();
+        devices.addAll(DeviceFactory.getDrones());
+        devices.addAll(DeviceFactory.getEngines());
+
+        return devices;
     }
 
     public List<Engine> showEngines() {
-        if (engines == null) {
-            this.engines = new ArrayList<Engine>();
-            engines.add(new DefaultEngine(100, 50, 200));
-            engines.add(new DefaultEngine(100, 50, 200));
-            this.engines = Collections.unmodifiableList(this.engines);
-        }
         return engines;
     }
 
-    public Drone getDrone() {
-        return null;
+    public List<Drone> showDrones() {
+        return drones;
+    }
+
+
+    public Drone getDrone(String droneType) {
+
+        return DeviceFactory.getDrone(droneType);
     }
 }

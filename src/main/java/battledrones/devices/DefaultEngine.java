@@ -1,46 +1,51 @@
 package battledrones.devices;
 
+import org.apache.commons.configuration.HierarchicalConfiguration;
+
+import java.util.HashMap;
+
 /**
  * Created by evilwasp on 30/09/15.
  */
 public class DefaultEngine extends DefaultDevice implements Engine {
-    private float thrust = 0f;
-    private float power;
+    public static final String PARAM_MAX_THRUST = "maxThrust";
+    private double thrust = 0d;
+    private double maxThrust;
 
     /**
-     * Creates engine with given {@link #power}, {@link DefaultDevice#mass mass} and {@link DefaultDevice#price price}.
+     * Creates engine with given {@link #maxThrust}, {@link DefaultDevice#mass mass} and {@link DefaultDevice#price price}.
      */
-    public DefaultEngine(float power, float mass, int price) {
-        super(mass, price);
-        this.power = power;
+    public DefaultEngine(HierarchicalConfiguration conf) {
+        super(conf);
+        this.maxThrust = conf.getDouble(PARAM_MAX_THRUST);
     }
 
     public void setThrust(int level) {
-        this.thrust = ((float) level) / 100;
+        this.thrust = maxThrust * ((double) level) / 100;
     }
 
-    public void setThrust(float level) {
+    public void setThrust(double level) {
         if (level < 0)
             this.thrust = level;
     }
 
-    public float getThrust() {
+    public double getThrust() {
         return thrust;
     }
 
-    public float getPower() {
-        return power;
+    public double getMaxThrust() {
+        return maxThrust;
     }
 
     public String getName() {
-        return "ProtoEngine";
+        return name;
     }
 
     public String getHumanDescription() {
-        return "Unknown Engine prototype. No one have idea how to use it.";
+        return humanDescription;
     }
 
     public String getTechDescription() {
-        return getName() + getMass() + " kg, " + getPower() + " MW, $" + getPrice();
+        return getName() + ": " + getMass() + " kg, " + getMaxThrust() + " MN, $" + getPrice();
     }
 }

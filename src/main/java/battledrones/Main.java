@@ -12,11 +12,11 @@ import java.io.FileWriter;
  * Created by evilwasp on 11/10/15.
  */
 public class Main {
-    public static Configuration configuration;
+    public static Configuration calcConf;
 
     static {
         try {
-            configuration = getConfig();
+            calcConf = getConfig("./conf/config.properties");
         } catch (ConfigurationException e) {
             e.printStackTrace();
         }
@@ -26,11 +26,13 @@ public class Main {
 
     }
 
-    private static Configuration getConfig() throws ConfigurationException {
-        File confFile = new File("./conf/config.properties");
-        if (confFile.isFile())
-            return new PropertiesConfiguration(confFile);
+    private static Configuration getConfig(String path) throws ConfigurationException {
+        File calculationConfFile = new File(path);
+        if (calculationConfFile.isFile())
+            return new PropertiesConfiguration(calculationConfFile);
         else
-            return new PropertiesConfiguration(ClassLoader.getSystemClassLoader().getResource("./conf/config.properties"));
+            return new PropertiesConfiguration(ClassLoader.getSystemClassLoader().getResource(path));
     }
+
+
 }

@@ -378,7 +378,7 @@ public class ExampleGraphics2D extends JFrame {
         // before we render everything im going to flip the y axis and move the
         // origin to the center (instead of it being in the top left corner)
         AffineTransform yFlip = AffineTransform.getScaleInstance(1, -1);
-        AffineTransform move = AffineTransform.getTranslateInstance(400, -300);
+        AffineTransform move = AffineTransform.getTranslateInstance(600, -500);
         g.transform(yFlip);
         g.transform(move);
 
@@ -422,7 +422,7 @@ public class ExampleGraphics2D extends JFrame {
     protected void render(Graphics2D g) {
         // lets draw over everything with a white background
         g.setColor(Color.WHITE);
-        g.fillRect(-400, -300, 800, 600);
+        g.fillRect(-600, -500, 1200, 1000);
 
         // lets move the view up some
         g.translate(0.0, -1.0 * SCALE);

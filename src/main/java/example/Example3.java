@@ -24,11 +24,7 @@
  */
 package example;
 
-import java.awt.Canvas;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Graphics2D;
-import java.awt.Toolkit;
+import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowAdapter;
@@ -52,43 +48,53 @@ import org.dyn4j.geometry.*;
  * Java2D for rendering.
  * <p>
  * This class can be used as a starting point for projects.
+ *
  * @author William Bittle
  * @version 3.2.0
  * @since 3.0.0
  */
 public class Example3 extends JFrame {
-    /** The serial version id */
+    /**
+     * The serial version id
+     */
     private static final long serialVersionUID = 5663760293144882635L;
 
-    /** The scale 45 pixels per meter */
+    /**
+     * The scale 45 pixels per meter
+     */
     public static final double SCALE = 45.0;
 
-    /** The conversion factor from nano to base */
+    /**
+     * The conversion factor from nano to base
+     */
     public static final double NANO_TO_BASE = 1.0e9;
     public static final int WIDTH = 1800;
     public static final int HEIGHT = 1000;
 
     /**
      * Custom Body class to add drawing functionality.
+     *
      * @author William Bittle
      * @version 3.0.2
      * @since 3.0.0
      */
     public static class GameObject extends Body {
-        /** The color of the object */
+        /**
+         * The color of the object
+         */
         protected Color color;
         double orientation;
 
         /**
          * Default constructor.
          */
-        public GameObject(){
+        public GameObject() {
             orientation = 0;
             // randomly generate the color
             this.color = new Color(
-                    (float)Math.random() * 0.5f + 0.5f,
-                    (float)Math.random() * 0.5f + 0.5f,
-                    (float)Math.random() * 0.5f + 0.5f);
+                    (float) Math.random() * 0.5f + 0.5f,
+                    (float) Math.random() * 0.5f + 0.5f,
+                    (float) Math.random() * 0.5f + 0.5f);
 
 
         }
@@ -97,7 +103,7 @@ public class Example3 extends JFrame {
             return orientation;
         }
 
-        public void setOrientation(double orientation){
+        public void setOrientation(double orientation) {
             this.orientation = orientation;
             this.rotate(this.orientation - orientation);
         }
@@ -106,6 +112,7 @@ public class Example3 extends JFrame {
          * Draws the body.
          * <p>
          * Only coded for polygons and circles.
+         *
          * @param g the graphics object to render to
          */
         public void render(Graphics2D g) {
@@ -131,21 +138,30 @@ public class Example3 extends JFrame {
             g.setTransform(ot);
         }
     }
+
     //The moving ship
     GameObject ship = new GameObject();
 
     private final Set<Integer> pressed = new HashSet<>();
 
-    /** The canvas to draw to */
+    /**
+     * The canvas to draw to
+     */
     protected Canvas canvas;
 
-    /** The dynamics engine */
+    /**
+     * The dynamics engine
+     */
     protected World world;
 
-    /** Wether the example is stopped or not */
+    /**
+     * Wether the example is stopped or not
+     */
     protected boolean stopped;
 
-    /** The time stamp for the last iteration */
+    /**
+     * The time stamp for the last iteration
+     */
     protected long last;
 
     /**
@@ -181,12 +197,14 @@ public class Example3 extends JFrame {
         //add a keaboard listner
 
 
-
         this.canvas.addKeyListener(new KeyListener() {
-
             @Override
             public void keyTyped(KeyEvent e) {
-
+                if (e.getKeyChar() == KeyEvent.VK_ESCAPE) {
+                    Component c = canvas.getParent();
+                    while(c.getParent()!=null) c = c.getParent();
+                    ((JFrame)c).dispose();
+                }
             }
 
             @Override
@@ -196,7 +214,7 @@ public class Example3 extends JFrame {
                     bullet.setBullet(true);
                     bullet.addFixture(Geometry.createCircle(0.05));
                     bullet.setMass(MassType.NORMAL);
-                    bullet.setLinearDamping(0.2);
+                    bullet.setLinearDamping(0.1);
                     bullet.setAngularDamping(2);
                     bullet.setGravityScale(0);
                     bullet.setOrientation(0);
@@ -209,9 +227,8 @@ public class Example3 extends JFrame {
                     world.addBody(bullet);
                     bullet.translate(ship.getWorldCenter().add(v));
 
-                }
-                else
-                pressed.add(e.getKeyCode());
+                } else
+                    pressed.add(e.getKeyCode());
 
             }
 
@@ -313,33 +330,33 @@ public class Example3 extends JFrame {
     protected void gameLoop() {
 
 
-for(int i: pressed) {
-    if (i == KeyEvent.VK_UP) {
-       // System.out.println("space key was pressed");
-        ship.applyForce(new Vector2(Math.cos(ship.getTransform().getRotation() + Math.PI / 2), Math.sin(ship.getTransform().getRotation() + Math.PI / 2)));
-    }
-    if (i == KeyEvent.VK_LEFT) {
-        //System.out.println("left key was pressed");
-        ship.applyTorque(0.05);
-    }
-    if (i == KeyEvent.VK_RIGHT) {
-        //System.out.println("left key was pressed");
-        ship.applyTorque(-0.05);
-    }
+        for (int i : pressed) {
+            if (i == KeyEvent.VK_UP) {
+                // System.out.println("space key was pressed");
+                ship.applyForce(new Vector2(Math.cos(ship.getTransform().getRotation() + Math.PI / 2), Math.sin(ship.getTransform().getRotation() + Math.PI / 2)));
+            }
+            if (i == KeyEvent.VK_LEFT) {
+                //System.out.println("left key was pressed");
+                ship.applyTorque(0.05);
+            }
+            if (i == KeyEvent.VK_RIGHT) {
+                //System.out.println("left key was pressed");
+                ship.applyTorque(-0.05);
+            }
 
-}
+        }
 
         //calculate orientation
 
         ship.orientation -= ship.getChangeInOrientation();
 
         // get the graphics object to render to
-        Graphics2D g = (Graphics2D)this.canvas.getBufferStrategy().getDrawGraphics();
+        Graphics2D g = (Graphics2D) this.canvas.getBufferStrategy().getDrawGraphics();
 
         // before we render everything im going to flip the y axis and move the
         // origin to the center (instead of it being in the top left corner)
         AffineTransform yFlip = AffineTransform.getScaleInstance(1, -1);
-        AffineTransform move = AffineTransform.getTranslateInstance(WIDTH/2, -HEIGHT/2);
+        AffineTransform move = AffineTransform.getTranslateInstance(WIDTH / 2, -HEIGHT / 2);
         g.transform(yFlip);
         g.transform(move);
 
@@ -375,20 +392,20 @@ for(int i: pressed) {
         // update the world with the elapsed time
         try {
             this.world.update(elapsedTime);
-        }
-        catch(Throwable e){
+        } catch (Throwable e) {
 
         }
     }
 
     /**
      * Renders the example.
+     *
      * @param g the graphics object to render to
      */
     protected void render(Graphics2D g) {
         // lets draw over everything with a white background
         g.setColor(Color.WHITE);
-        g.fillRect(-WIDTH/2, -HEIGHT/2, WIDTH, HEIGHT);
+        g.fillRect(-WIDTH / 2, -HEIGHT / 2, WIDTH, HEIGHT);
 
         g.setColor(Color.BLACK);
         g.drawString("Ship orientation" + ship.orientation, 20, 20);
@@ -415,6 +432,7 @@ for(int i: pressed) {
 
     /**
      * Returns true if the example is stopped.
+     *
      * @return boolean true if stopped
      */
     public synchronized boolean isStopped() {
@@ -423,6 +441,7 @@ for(int i: pressed) {
 
     /**
      * Entry point for the example application.
+     *
      * @param args command line arguments
      */
     public static void main(String[] args) {

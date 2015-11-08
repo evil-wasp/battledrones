@@ -65,6 +65,8 @@ public class Example3 extends JFrame {
 
     /** The conversion factor from nano to base */
     public static final double NANO_TO_BASE = 1.0e9;
+    public static final int WIDTH = 1800;
+    public static final int HEIGHT = 1000;
 
     /**
      * Custom Body class to add drawing functionality.
@@ -168,7 +170,7 @@ public class Example3 extends JFrame {
         });
 
         // create the size of the window
-        Dimension size = new Dimension(800, 600);
+        Dimension size = new Dimension(WIDTH, HEIGHT);
 
         // create a canvas to paint to
         this.canvas = new Canvas();
@@ -337,7 +339,7 @@ for(int i: pressed) {
         // before we render everything im going to flip the y axis and move the
         // origin to the center (instead of it being in the top left corner)
         AffineTransform yFlip = AffineTransform.getScaleInstance(1, -1);
-        AffineTransform move = AffineTransform.getTranslateInstance(400, -300);
+        AffineTransform move = AffineTransform.getTranslateInstance(WIDTH/2, -HEIGHT/2);
         g.transform(yFlip);
         g.transform(move);
 
@@ -386,7 +388,7 @@ for(int i: pressed) {
     protected void render(Graphics2D g) {
         // lets draw over everything with a white background
         g.setColor(Color.WHITE);
-        g.fillRect(-400, -300, 800, 600);
+        g.fillRect(-WIDTH/2, -HEIGHT/2, WIDTH, HEIGHT);
 
         g.setColor(Color.BLACK);
         g.drawString("Ship orientation" + ship.orientation, 20, 20);
